@@ -8,7 +8,7 @@ const LazyLoginButton = dynamic(() => import("./LoginButton"), { ssr: false });
 
 const Navbar = () => {
   return (
-    <div className="fixed bg-white dark:bg-slate-800 border-b w-full flex top-0 left-0 h-16 items-center justify-between px-10 lg:px-32">
+    <div className="fixed bg-white dark:bg-slate-800 border-b w-full flex top-0 left-0 h-16 items-center justify-between px-11 lg:px-32">
       <div className="flex gap-x-5 items-center">
         <Link href={"/"} className="flex items-center gap-x-2">
           <Image src={"/logo.svg"} alt="/" width={25} height={25} />
