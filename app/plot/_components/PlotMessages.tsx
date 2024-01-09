@@ -6,9 +6,10 @@ import remarkGfm from "remark-gfm";
 
 type props = {
   messages: Message[];
+  loading: boolean;
 };
 
-const PlotMessages: FC<props> = ({ messages }) => {
+const PlotMessages: FC<props> = ({ messages, loading }) => {
   const { user } = useUser();
   return (
     <div className="space-y-4 mt-5 ">

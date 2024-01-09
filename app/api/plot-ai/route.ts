@@ -99,7 +99,7 @@ export async function POST(req: Request) {
     // console.log(result);
     // return NextResponse.json(result, { status: 200 });
     const res = await genAI.call(questions);
-    console.log(res);
+    await incrementApiLimit();
 
     return NextResponse.json(res, { status: 200 });
   } catch (error) {

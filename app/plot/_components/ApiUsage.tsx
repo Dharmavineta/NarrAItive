@@ -23,9 +23,13 @@ const ApiUsage = async () => {
         <SubscriptionButton isPro={isPro} />
 
         <p className="font-semibold text-xl capitalize">
-          {isPro
-            ? "You're a pro user"
-            : "you&apos;ve {MAX_FREE_COUNTS - apiCount} free credits remaining"}
+          {isPro ? (
+            "You're a pro user"
+          ) : (
+            <span>
+              you&apos;ve {MAX_FREE_COUNTS - apiCount} free credits remaining`
+            </span>
+          )}
         </p>
       </div>
       <Button asChild variant={"outline"}>

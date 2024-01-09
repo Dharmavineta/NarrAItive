@@ -16,6 +16,7 @@ const ChatWIndow = () => {
   const router = useRouter();
   const [input, setInput] = useState("");
   const [res, setRes] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   const onOpen = store((state) => state.onOpen);
   const formSchema = z.object({
@@ -60,6 +61,7 @@ const ChatWIndow = () => {
     setRes([...res, { id: userCommonId, role: "user", content: input }]);
 
     try {
+      setLoading(true);
       const response = await axios.post("/api/plot-ai", { prompt: input });
 
       if (response.status === 200) {
@@ -72,6 +74,7 @@ const ChatWIndow = () => {
             content: response?.data?.kwargs?.content,
           },
         ]);
+        router.refresh();
         setInput("");
       }
     } catch (error: any) {
@@ -80,6 +83,8 @@ const ChatWIndow = () => {
         onOpen();
         toast.error("Please upgrade to premium");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -100,7 +105,7 @@ const ChatWIndow = () => {
         </form>
       </div>
       <div className="max-w-5xl mx-auto px-10 pb-36">
-        <PlotMessages messages={res} />
+        <PlotMessages messages={res} loading={loading} />
       </div>
     </>
   );
